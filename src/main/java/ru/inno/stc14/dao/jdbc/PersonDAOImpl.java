@@ -18,9 +18,9 @@ public class PersonDAOImpl implements PersonDAO {
     }
 
     private static final String INSERT_PERSON_SQL_TEMPLATE =
-            "insert into STUDENTS.PUBLIC.person (name, birth_date) values (?, ?)";
+            "insert into stc16.stc16servlets.person (name, birth_date) values (?, ?)";
     private static final String SELECT_PERSON_SQL_TEMPLATE =
-            "select id, name, birth_date from person";
+            "select id, name, birth_date from stc16.stc16servlets.person";
 
     @Override
     public List<Person> getList() {

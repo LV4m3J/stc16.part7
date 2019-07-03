@@ -1,8 +1,8 @@
 package ru.inno.stc14.dao;
 
-import java.util.Map;
+import ru.inno.stc14.entity.User;
 
 public interface UserDAO {
 
-    Map<String, String> getUser(String login);
+    User getUser(String login);
 }

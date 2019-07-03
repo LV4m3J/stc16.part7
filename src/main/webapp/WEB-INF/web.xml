@@ -6,15 +6,16 @@
 
     <context-param>
         <param-name>dbUser</param-name>
-        <param-value>sa</param-value>
+        <!--<param-value>sa</param-value>-->
+        <param-value>postgres</param-value>
     </context-param>
     <context-param>
         <param-name>dbPassword</param-name>
-        <param-value></param-value>
+        <param-value>postgres</param-value>
     </context-param>
     <context-param>
         <param-name>dbURL</param-name>
-        <param-value>jdbc:h2:mem:students</param-value>
+        <param-value>jdbc:postgresql://localhost:5432/stc16</param-value>
     </context-param>
 
     <!--

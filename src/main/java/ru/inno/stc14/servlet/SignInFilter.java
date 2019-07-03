@@ -1,6 +1,8 @@
 package ru.inno.stc14.servlet;
 
 
+import ru.inno.stc14.entity.User;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +20,17 @@ public class SignInFilter implements Filter {
         logger.warning("initialize loginFilter");
     }
 
+    /**
+     * фильтр не мой честно скажу, нашел где то в интернете не помню где уже
+     * пробовал сой сделать что то как то не получилось.
+     * Проверка логина пользователя
+     * @param servletRequest
+     * @param servletResponse
+     * @param filterChain
+     * @throws IOException
+     * @throws ServletException
+     */
+
     @Override
     public void doFilter(ServletRequest servletRequest,
                          ServletResponse servletResponse,
@@ -26,11 +39,11 @@ public class SignInFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
-        final HttpSession session = request.getSession(false);//false
+        final HttpSession session = request.getSession();//false
         String loginURI = request.getContextPath() + "/signin";
 
         boolean loggedIn;
-        if(session!=null && session.getAttribute("login")!=null){
+        if(session!=null && session.getAttribute("user")!=null){
             loggedIn = true;
         } else {
             loggedIn = false;

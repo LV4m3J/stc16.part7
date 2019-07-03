@@ -13,7 +13,7 @@
 </head>
 <body>
     <h1>Аутентификация</h1>
-    <form method="post" action="signin">
+    <form method="post" action="">
         <input type="text" required name="login" placeholder="login"><br/>
         <input type="password" required name="password" placeholder="password"><br/>
         <input type="submit" value="Enter"/>
