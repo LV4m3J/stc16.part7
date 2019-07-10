@@ -3,15 +3,9 @@ package ru.inno.stc14.service;
 import ru.inno.stc14.dao.PersonDAO;
 import ru.inno.stc14.dao.jdbc.PersonDAOImpl;
 import ru.inno.stc14.entity.Person;
-import ru.inno.stc14.servlet.AppContextListener;
 
 import java.sql.Connection;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class PersonServiceImpl implements PersonService {
@@ -28,16 +22,20 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public boolean addPerson(String name, String birth) {
+    public boolean addPerson(String name, String birth, String email, String phoneNum) {
         Person person = new Person();
         person.setName(name);
 
-        Date date = safeParseDate(birth);
-        person.setBirthDate(date);
+        //Date date = safeParseDate(birth);
+        person.setBirthDate(birth);
+
+        person.setEmail(email);
+        person.setPhoneNum(phoneNum);
+
         return personDAO.addPerson(person);
     }
 
-    private Date safeParseDate(String birthStr) {
+    /*private Date safeParseDate(String birthStr) {
         DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
         try {
             return format.parse(birthStr);
@@ -45,6 +43,6 @@ public class PersonServiceImpl implements PersonService {
             logger.log(Level.SEVERE, "Date parsing error", e);
             throw new RuntimeException(e);
         }
-    }
+    }*/
 
 }

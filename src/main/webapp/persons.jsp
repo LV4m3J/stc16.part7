@@ -1,29 +1,36 @@
-<%@ page import="ru.inno.stc14.entity.Person" %>
-<%@ page import="java.util.List" %>
-<%@ page contentType="text/html;charset=UTF-8" %>
-<html>
-<head>
-    <title>Студенты</title>
-    <meta charset="UTF-8"/>
-</head>
-<body>
-<table>
+<%--
+  Created by IntelliJ IDEA.
+  User: cocain
+  Date: 2019-07-10
+  Time: 16:49
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<table class="table">
+    <thead>
     <tr>
         <th>ID</th>
         <th>Name</th>
         <th>Birthdate</th>
+        <th>E-mail</th>
+        <th>PhoneNum</th>
     </tr>
-    <% List<Person> list = (List<Person>) request.getAttribute("persons");
-        for (Person person : list) { %>
-    <tr>
-        <td><%=person.getId()%></td>
-        <td><%=person.getName()%></td>
-        <td><%=person.getBirthDate()%></td>
-    </tr>
-    <br>
-    <% } %>
+    </thead>
+    <tbody>
+    <c:forEach var="person" items="${persons}">
+        <tr>
+            <td scope="row">${person.id}</td>
+            <td>${person.id}</td>
+            <td>${person.name}</td>
+            <td>${person.birthDate}</td>
+            <td>${person.email}</td>
+            <td>${person.phoneNum}</td>
+        </tr>
+    </c:forEach>
+    </tbody>
 </table>
+
 <br>
 <a href="/">Main page</a>
-</body>
-</html>

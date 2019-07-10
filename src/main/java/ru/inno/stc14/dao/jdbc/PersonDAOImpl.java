@@ -18,9 +18,9 @@ public class PersonDAOImpl implements PersonDAO {
     }
 
     private static final String INSERT_PERSON_SQL_TEMPLATE =
-            "insert into stc16.stc16servlets.person (name, birth_date) values (?, ?)";
+            "insert into stc16.stc16servlets.person (name, birth_date, email, phoneNum) values (?, ?, ?, ?)";
     private static final String SELECT_PERSON_SQL_TEMPLATE =
-            "select id, name, birth_date from stc16.stc16servlets.person";
+            "select * from stc16.stc16servlets.person";
 
     @Override
     public List<Person> getList() {
@@ -31,8 +31,10 @@ public class PersonDAOImpl implements PersonDAO {
                     Person person = new Person();
                     person.setId(resultSet.getInt(1));
                     person.setName(resultSet.getString(2));
-                    Date date = new Date(resultSet.getLong(3));
+                    String date = resultSet.getString(3);
                     person.setBirthDate(date);
+                    person.setEmail(resultSet.getString(4));
+                    person.setPhoneNum(resultSet.getString(5));
                     result.add(person);
                 }
             }
@@ -47,11 +49,9 @@ public class PersonDAOImpl implements PersonDAO {
     public boolean addPerson(Person person) {
         try (PreparedStatement statement = connection.prepareStatement(INSERT_PERSON_SQL_TEMPLATE)) {
             statement.setString(1, person.getName());
-            if (person.getBirthDate() == null) {
-                statement.setNull(2, Types.BIGINT);
-            } else {
-                statement.setLong(2, person.getBirthDate().getTime());
-            }
+            statement.setString(2, person.getBirthDate());
+            statement.setString(3,person.getEmail());
+            statement.setString(4,person.getPhoneNum());
             statement.execute();
             return true;
         } catch (SQLException e) {

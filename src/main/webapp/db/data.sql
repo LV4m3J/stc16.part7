@@ -5,7 +5,9 @@ CREATE TABLE stc16.stc16servlets.person
 (
     id         serial NOT NULL,
     name       VARCHAR(250),
-    birth_date bigint
+    birth_date varchar(250),
+    email VARCHAR(200),
+    phoneNum varchar(12)
 );
 
 create table stc16.stc16servlets.users

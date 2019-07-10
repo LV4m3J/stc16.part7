@@ -33,7 +33,9 @@ public class PersonServlet extends HttpServlet {
         req.setCharacterEncoding("utf-8");
         String name = req.getParameter("name");
         String birth = req.getParameter("birth");
-        person.addPerson(name, birth);
+        String email = req.getParameter("email");
+        String phoneNum = req.getParameter("phoneNum");
+        person.addPerson(name, birth, email, phoneNum);
 
         resp.sendRedirect(req.getContextPath() + "/person/list");
     }
