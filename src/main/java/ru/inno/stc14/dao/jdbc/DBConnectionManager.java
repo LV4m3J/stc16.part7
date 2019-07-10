@@ -7,14 +7,25 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnectionManager implements ConnectionManager {
-    private Connection connection;
+    /**
+     * Singleton - для соединения с БД
+     */
+    private static Connection connection = null;
+
+    private DBConnectionManager() {
+    }
 
     public DBConnectionManager(String dbURL, String user, String pwd) throws ClassNotFoundException, SQLException {
-        Class.forName("org.postgresql.Driver");
-        this.connection = DriverManager.getConnection(dbURL, user, pwd);
+        if(connection == null) {
+            Class.forName("org.postgresql.Driver");
+            connection = DriverManager.getConnection(dbURL, user, pwd);
+        }
+
     }
 
+    @Override
     public Connection getConnection() {
-        return this.connection;
+        return connection;
     }
+
 }
